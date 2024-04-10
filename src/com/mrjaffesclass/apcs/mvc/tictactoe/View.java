@@ -1,5 +1,6 @@
 package com.mrjaffesclass.apcs.mvc.tictactoe;
 import com.mrjaffesclass.apcs.messenger.*;
+import javax.swing.JButton;
 /**
  * MVC Template
  * This is a template of an MVC framework used by APCS for the 
@@ -74,35 +75,83 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("jButton1");
         jButton1.setName("00"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton2.setText("jButton2");
         jButton2.setName("01"); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton3.setText("jButton3");
         jButton3.setName("02"); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton4.setText("jButton4");
         jButton4.setName("10"); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton5.setText("jButton5");
         jButton5.setName("11"); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton6.setText("jButton6");
         jButton6.setName("12"); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton7.setText("jButton7");
         jButton7.setName("20"); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton8.setText("jButton8");
         jButton8.setName("21"); // NOI18N
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
 
         jButton9.setText("jButton9");
         jButton9.setName("22"); // NOI18N
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClick(evt);
+            }
+        });
+
+        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,11 +183,17 @@ public class View extends javax.swing.JFrame implements MessageHandler {
                         .addGap(18, 18, 18)
                         .addComponent(jButton9)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(121, 121, 121)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(11, 11, 11)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,6 +214,11 @@ public class View extends javax.swing.JFrame implements MessageHandler {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void onClick(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClick
+        JButton button = (JButton)evt.getSource();
+        this.mvcMessaging.notify("playerMove", button.getName());
+    }//GEN-LAST:event_onClick
+
   /**
    * @param args the command line arguments
    */
@@ -173,5 +233,6 @@ public class View extends javax.swing.JFrame implements MessageHandler {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

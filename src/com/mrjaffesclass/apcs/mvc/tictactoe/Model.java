@@ -24,6 +24,7 @@ public class Model implements MessageHandler {
    */
   public Model(Messenger messages) {
     mvcMessaging = messages;
+    board = new String[3][3];
   }
   
   /**
@@ -70,8 +71,10 @@ public class Model implements MessageHandler {
         // ... then set X or O depending on whose move it is
         if (this.whoseMove) {
           this.board[row][col] = "X";
+          this.whoseMove = !this.whoseMove;
         } else {
           this.board[row][col] = "O";
+          this.whoseMove = !this.whoseMove;
         }
         // Send the boardChange message along with the new board 
         this.mvcMessaging.notify("boardChange", this.board);
@@ -85,4 +88,35 @@ public class Model implements MessageHandler {
       this.mvcMessaging.notify("boardChange", this.board);
     }
   }
+
+  private String isWinner(){
+    for (int i=0; i<3; i++) {
+      if (!board[i][0].isEmpty() && board[i][0].equals(board[i][1]) && board[i][0].equals(board[i][2]))
+        return board[i][0];
+      if (!board[0][i].isEmpty() && board[0][i].equals(board[1][i]) && board[0][i].equals(board[2][i]))
+        return board[0][i];
+    }
+
+    // Check the diagonals
+    if (!board[0][0].isEmpty() && board[0][0].equals(board[1][1]) && board[0][0].equals(board[2][2]))
+      return board[0][0];
+    if (!board[0][2].isEmpty() && board[0][2].equals(board[1][1]) && board[0][2].equals(board[2][0]))
+      return board[0][2];
+
+    boolean tie = true;
+    for(int y = 0; y < 3; y++){
+        for(int x = 0; x < 3; x++){
+            if(board[y][x].isEmpty()){
+                tie = false;
+            }
+        }
+    }
+
+    if(tie){
+        this.gameOver = true;
+    }
+
+    // If we haven't found it, then return a blank string
+    return "";
+    }
 }
