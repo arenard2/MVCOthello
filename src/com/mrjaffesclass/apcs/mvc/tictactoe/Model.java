@@ -33,13 +33,13 @@ public class Model implements MessageHandler {
     this.newGame();
     this.mvcMessaging.subscribe("playerMove", this);
     this.mvcMessaging.subscribe("newGame", this);
+    this.board = new String[8][8];
   }
   
   /**
    * Reset the state for a new game
    */
   private void newGame() {
-    this.board = new String[3][3];
     for(int row=0; row<this.board.length; row++) {
       for (int col=0; col<this.board[0].length; col++) {
         this.board[row][col] = "";
@@ -91,41 +91,5 @@ public class Model implements MessageHandler {
     }
   }
 
-  private void isWinner(){
-    for (int i=0; i<3; i++) {
-      if (!board[i][0].isEmpty() && board[i][0].equals(board[i][1]) && board[i][0].equals(board[i][2])){
-        this.mvcMessaging.notify("gameOver", "Winner: " + board[i][0]);
-        this.gameOver = true;
-      }
-      if (!board[0][i].isEmpty() && board[0][i].equals(board[1][i]) && board[0][i].equals(board[2][i]))
-      {
-        this.mvcMessaging.notify("gameOver", "Winner: " +board[0][i]);
-        this.gameOver = true;
-      }
-    }
-
-    // Check the diagonals
-    if (!board[0][0].isEmpty() && board[0][0].equals(board[1][1]) && board[0][0].equals(board[2][2])){
-      this.mvcMessaging.notify("gameOver", "Winner: " +board[0][0]);
-      this.gameOver = true;
-    }
-    if (!board[0][2].isEmpty() && board[0][2].equals(board[1][1]) && board[0][2].equals(board[2][0])){
-      this.mvcMessaging.notify("gameOver", "Winner: " +board[0][2]);
-      this.gameOver = true;
-    }
-
-    boolean tie = true;
-    for(int y = 0; y < 3; y++){
-        for(int x = 0; x < 3; x++){
-            if(board[y][x].isEmpty()){
-                tie = false;
-            }
-        }
-    }
-
-    if(tie){
-        this.gameOver = true;
-        this.mvcMessaging.notify("gameOver", "tie");
-    }
-  }
+  private void isWinner(){}
 }

@@ -12,6 +12,7 @@ import javax.swing.JButton;
 public class View extends javax.swing.JFrame implements MessageHandler {
 
   private final Messenger mvcMessaging;
+  private JButton[][] buttons;
   
   /**
    * Creates a new view
@@ -20,6 +21,7 @@ public class View extends javax.swing.JFrame implements MessageHandler {
   public View(Messenger messages) {
     mvcMessaging = messages;   // Save the calling controller instance
     initComponents();           // Create and init the GUI components
+    buttons = new JButton[8][8];
   }
   
   /**
@@ -45,15 +47,11 @@ public class View extends javax.swing.JFrame implements MessageHandler {
       // know that the model is sending out the board data with the message
       String[][] board = (String[][])messagePayload;
       // Now set the button text with the contents of the board
-      jButton1.setText(board[0][0]);
-      jButton2.setText(board[0][1]);
-      jButton3.setText(board[0][2]);
-      jButton4.setText(board[1][0]);
-      jButton5.setText(board[1][1]);
-      jButton6.setText(board[1][2]);
-      jButton7.setText(board[2][0]);
-      jButton8.setText(board[2][1]);
-      jButton9.setText(board[2][2]);
+      for(int y = 0; y < 8; y++){
+          for(int x = 0; x < 8; x++){
+              buttons[y][x].setText(board[y][x]);
+          }
+      }
     } else if(messageName.equals("gameOver")){
         jLabel1.setText((String)messagePayload);
     }
@@ -193,10 +191,11 @@ public class View extends javax.swing.JFrame implements MessageHandler {
                         .addComponent(jLabel1))
                     .addComponent(jButton10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
